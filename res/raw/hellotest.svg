@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1024 768" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" fill-rule="evenodd" xml:space="preserve" >
+<defs >
+<clipPath id="clipId0" >
+<path d="M0,768 1024,768 1024,0 0,0 z" />
+</clipPath>
+</defs>
+<g stroke-width="0.1" clip-path="url(#clipId0)" fill="none" stroke="rgb(0,0,0)" />
+<g stroke-width="0.35" clip-path="url(#clipId0)" fill="none" stroke="rgb(0,0,0)" >
+<polyline points="273.908,373.011 396.006,277.774 " />
+<circle cx="482.289" cy="292.426" r="65.226" />
+<polyline points="608.458,386.035 608.458,259.866 728.928,259.866 728.928,386.035 608.458,386.035 " />
+</g>
+<g stroke-width="0.18" clip-path="url(#clipId0)" fill="rgb(0,255,0)" stroke="none" >
+<text transform="matrix(3.45502 0 -0 5.17994 388.583 400.162)" font-family="宋体,'sans-serif'" letter-spacing="0.1" font-size="1.42915" >HELLO</text>
+</g>
+</svg>
