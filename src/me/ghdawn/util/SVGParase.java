@@ -1,6 +1,7 @@
 package me.ghdawn.util;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,10 +21,10 @@ import org.xml.sax.SAXException;
 
 public class SVGParase
 {
-	private File _svgFile;
+	private InputStream _svgFile;
 	Document doc;
 	NodeList nList;
-	public SVGParase(File svgFile) throws SAXException, IOException
+	public SVGParase(InputStream svgFile) throws SAXException, IOException
 	{
 		_svgFile=svgFile;
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory
@@ -33,6 +34,7 @@ public class SVGParase
         {
 	        dBuilder = dbFactory.newDocumentBuilder();
 	        doc = dBuilder.parse(_svgFile);
+	        
 			doc.getDocumentElement().normalize();
 			
         }

@@ -1,6 +1,8 @@
 package me.ghdawn.form;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 
 
@@ -19,7 +21,9 @@ public class Circle implements IShape
     public void draw(Canvas canvas)
     {
 	    // TODO Auto-generated method stub
-	    
+	    Paint paint = new Paint();
+	    paint.setColor(Color.BLACK);
+		canvas.drawCircle(_cx, _cy, _r, paint);
     }
 	
 	

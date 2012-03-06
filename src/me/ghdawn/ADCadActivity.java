@@ -10,20 +10,27 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
-import com.larvalabs.svgandroid.SVG;
-import com.larvalabs.svgandroid.SVGParser;
+import org.xml.sax.SAXException;
+
+import me.ghdawn.form.Circle;
+import me.ghdawn.form.Line;
+import me.ghdawn.util.SVGParase;
 
 import android.R.bool;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Picture;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -42,43 +49,45 @@ public class ADCadActivity extends Activity {
         ImageView imageView =(ImageView)findViewById(R.id.imageView);  
         TextView t=(TextView)findViewById(R.id.tbView);
 	    t.setText("OK");
+	    Log.d("myTag", "HHH");
         // Set the background color to white
         imageView.setBackgroundColor(Color.WHITE);
+        try
+        {
+	       InputStream is= download("http://192.168.1.109:8080/cad.svg", "baidu");
+	      
+	        BitmapDrawable bitmapDrawable=new BitmapDrawable((is));
+	        Bitmap bitmap;
+	        
+	        bitmap=Bitmap.createBitmap(300, 180, Config.ALPHA_8);
+	        Canvas canvas=new Canvas(bitmap);
+	        Paint paint=new Paint();
+	        paint.setColor(Color.BLACK);
+	        t.setText("1");
+	        SVGParase svgParase=new SVGParase(is);
+	        ArrayList<Line> lines=svgParase.getLines();
+	        t.setText("12324");
+			canvas.drawLine(20, 40, 240, 140, paint);
+	        imageView.setImageBitmap(bitmap);
+        }
+        catch (IOException e)
+        {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+        }
         /*	t.setText("1");
-	       download("http://192.168.1.101:8080/breeze.gif", "baidu");
+	      
 	       
 	       File file=new File("baidu");
-	       InputStream sin=new FileInputStream(file);
-	        //SVG svg=SVGParser.getSVGFromInputStream(sin);*/
-	         SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.images);
-	        //BitmapDrawable bitmap=new BitmapDrawable(sin);
-	        Drawable drawable=svg.createPictureDrawable();
-	       // drawable.setBounds(10, 20, 200, 300);
-	         // Get a drawable from the parsed SVG and set it as the drawable for the ImageView
-	         imageView.setImageDrawable(drawable);
-      
-       
-        RelativeLayout root=(RelativeLayout) findViewById(R.id.RelativeLayout1);
-        final DrawView draw=new DrawView(this);
-        draw.setMinimumWidth(300);
-        draw.setMinimumHeight(500);
-        draw.setOnTouchListener(new OnTouchListener()
+       */
+        catch (SAXException e)
         {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event)
-			{
-				// TODO Auto-generated method stub
-			
-				draw.currentX=event.getX();
-				draw.currentY=event.getY();
-				draw.invalidate();
-				return true;
-			}
-		});
-        root.addView(draw);
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+        }       
+      
     }
-    public void download(String urlString, String filename) throws IOException 
+    public InputStream download(String urlString, String filename) throws IOException 
     {   
 	    // 构造URL   
 	    URL url = new URL(urlString);   
@@ -87,12 +96,14 @@ public class ADCadActivity extends Activity {
 	    // 输入流   
 	    InputStream is = con.getInputStream();   
 
-	    
+	    return is;/*
 	    // 1K的数据缓冲   
 	    byte[] bs = new byte[1024];   
 	    // 读取到的数据长度   
 	    int len;   
 	    // 输出的文件流   
+	    File file=new File(filename);
+	    file.createNewFile();
 	    OutputStream os = new FileOutputStream(filename);   
 	    // 开始读取   
 	    while ((len = is.read(bs)) != -1) {   
@@ -102,6 +113,6 @@ public class ADCadActivity extends Activity {
 	    // 完毕，关闭所有链接   
 	    os.close();   
 	    is.close();  
-	     
+	    */ 
 	  } 
 }
