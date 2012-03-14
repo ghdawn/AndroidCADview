@@ -1,6 +1,5 @@
 package me.ghdawn;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,6 +15,7 @@ import org.xml.sax.SAXException;
 
 import me.ghdawn.form.Circle;
 import me.ghdawn.form.Line;
+import me.ghdawn.util.FileManage;
 import me.ghdawn.util.SVGParase;
 
 import android.R.bool;
@@ -55,19 +55,31 @@ public class ADCadActivity extends Activity {
         try
         {
 	       InputStream is= download("http://192.168.1.109:8080/cad.svg", "baidu");
-	      
-	        BitmapDrawable bitmapDrawable=new BitmapDrawable((is));
+	       //FileManage fileManage=new FileManage();
+	       
+	       // BitmapDrawable bitmapDrawable=new BitmapDrawable((is));
 	        Bitmap bitmap;
 	        
 	        bitmap=Bitmap.createBitmap(300, 180, Config.ALPHA_8);
 	        Canvas canvas=new Canvas(bitmap);
 	        Paint paint=new Paint();
 	        paint.setColor(Color.BLACK);
-	        t.setText("1");
+	       // t.setText("1");
 	        SVGParase svgParase=new SVGParase(is);
 	        ArrayList<Line> lines=svgParase.getLines();
 	        t.setText("12324");
-			canvas.drawLine(20, 40, 240, 140, paint);
+	        t.setText(""+lines.get(0).getX(0)+","+lines.get(0).getY(0));
+			//canvas.drawLine(lines.get(0).getX(0)/10, lines.get(0).getY(0)/10, lines.get(0).getX(1)/10, lines.get(0).getY(1)/10, paint);
+			ArrayList<Circle> circles=svgParase.getCircles();
+			for (Circle circle : circles)
+            {
+	            circle.draw(canvas, 5);
+            }
+			for (Line line : lines)
+            {
+	            line.draw(canvas, 5);
+            }
+			//imageView.setImageDrawable(bitmapDrawable);
 	        imageView.setImageBitmap(bitmap);
         }
         catch (IOException e)
@@ -84,8 +96,8 @@ public class ADCadActivity extends Activity {
         {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();
-        }       
-      
+        }
+       
     }
     public InputStream download(String urlString, String filename) throws IOException 
     {   

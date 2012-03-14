@@ -11,7 +11,7 @@ public class Polygon extends Line
 		super();
 	}
 	@Override
-	public void draw(Canvas canvas)
+	public void draw(Canvas canvas,float scale)
 	{
 		// TODO Auto-generated method stub
 
