@@ -18,6 +18,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import android.util.Log;
+
 
 public class SVGParase
 {
@@ -34,7 +36,7 @@ public class SVGParase
         {
 	        dBuilder = dbFactory.newDocumentBuilder();
 	        doc = dBuilder.parse(_svgFile);
-	        
+	        Log.d("myTag", "InitOK");
 			doc.getDocumentElement().normalize();
 			
         }
@@ -51,11 +53,12 @@ public class SVGParase
 		ArrayList<Line> lines=new ArrayList<Line>(100);
 		Line line;
 		nList = doc.getElementsByTagName("polyline");
+		Log.d("myTag", "LineBegin");
 		for (int temp = 0; temp < nList.getLength(); temp++)
 		{
 
 			Node nNode = nList.item(temp);
-			
+			Log.d("myTag", "iterBegin");
 			if (nNode.getNodeType() == Node.ELEMENT_NODE)
 			{
 
