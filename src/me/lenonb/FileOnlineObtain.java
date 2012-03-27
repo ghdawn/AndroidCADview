@@ -9,14 +9,18 @@ public class FileOnlineObtain implements IFileObtain {
 	@Override
 	public boolean Open(String path , String name) throws MalformedURLException , IOException  {
 		
-			URL url;
+		String fullPath ;
+		name = name.concat(".svg") ;
+		fullPath = path.concat(name) ;
 			
-			url = new URL(path);
-			URLConnection conn = url.openConnection() ;
+		URL url;
 			
-			iStream = conn.getInputStream() ;
+		url = new URL(fullPath);
+		URLConnection conn = url.openConnection() ;
 			
-			return true ;		
+		iStream = conn.getInputStream() ;
+			
+		return true ;		
 	}
 	
 	@Override

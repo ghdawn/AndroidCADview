@@ -6,18 +6,23 @@ import java.net.MalformedURLException;
 public class FileManage {
 	private IFileObtain obtain ;
 	private String name ;
+	private String path ;
+	private int MAX_STRING = 100 ;
 	
-	public FileManage(IFileObtain obtain) {
+	public FileManage(IFileObtain obtain , String path) {
 		this.obtain = obtain ;
+		this.path = path ;
 	}
 	
-	public String Search(String name) {
+	public String[] Search(String name) {
 		this.name = name ;
+		int n = 0 ;
 		
 		InputStreamReader iStreamReader = new InputStreamReader(obtain.getFile()) ;
 		BufferedReader br = new BufferedReader(iStreamReader) ;
 		
-		String str = null ;
+		String[] str ;
+		str = new String[MAX_STRING] ;
 		String temp = " " ;
 
 		try {
@@ -25,8 +30,8 @@ public class FileManage {
 			{
 				temp = br.readLine() ;
 				if(temp.indexOf(name) != -1) {
-					str = temp ;
-					break ;
+					str[n] = temp ;
+					n++ ;
 				}
 			}
 		} 
@@ -40,7 +45,7 @@ public class FileManage {
 	public String getFile(String fileName , InputStream fin) {
 		
 			try {
-				obtain.Open(this.Search(name) , this.name) ;
+				obtain.Open(this.path , Search(name)[0]) ;
 			} 
 			catch (MalformedURLException e) {
 				return "URLError";

@@ -11,7 +11,11 @@ public class FileLocalObtain implements IFileObtain {
 	@Override
 	public boolean Open(String path, String name) throws FileNotFoundException {
 
-		FileInputStream fi = new FileInputStream(path) ;
+		String fullPath ;
+		name = name.concat(".svg") ;
+		fullPath = path.concat(name) ;
+		
+		FileInputStream fi = new FileInputStream(fullPath) ;
 		
 		iStream = (InputStream)fi ;
 		
