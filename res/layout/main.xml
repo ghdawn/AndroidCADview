@@ -6,31 +6,45 @@
     android:gravity="bottom"
     android:orientation="vertical" >
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:id="@+id/tbpath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:cursorVisible="true"
+        android:text="http://192.168.113.182:8080/" >
+
+        <requestFocus />
+    </EditText>
+
     <TextView
         android:id="@+id/tbView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="73dp"
         android:text="@string/hello" />
+
+    <EditText
+        android:id="@+id/tbname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tbpath"
+        android:text="hellotest" />
 
     <Button
         android:id="@+id/btBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TextView1"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="97dp"
-        android:text="Button" />
-
-   <ImageView
-       android:id="@+id/imageView"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
-       android:layout_alignParentLeft="true"
-       android:layout_below="@+id/btBut" />
+        android:layout_below="@+id/tbpath"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:text="@string/viewpic" />
 
 </RelativeLayout>

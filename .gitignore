@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 .project
-project.properties 
 .classpath 
 proguard.cfg
 bin/
-=======
-bin/
-.classpath
->>>>>>> e36cca6eb5ff57b2ff39a0abd5cbd6477f56f6cb
+project.properties
+gen/
+

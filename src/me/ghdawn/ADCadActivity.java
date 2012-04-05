@@ -15,14 +15,12 @@ import org.xml.sax.SAXException;
 
 import me.ghdawn.form.Circle;
 import me.ghdawn.form.Line;
-<<<<<<< HEAD
-import me.ghdawn.form.MyText;
-=======
->>>>>>> e36cca6eb5ff57b2ff39a0abd5cbd6477f56f6cb
+
 import me.ghdawn.util.FileManage;
 import me.ghdawn.util.SVGParase;
 
 import android.R.bool;
+import android.R.string;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -38,7 +36,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,17 +51,43 @@ public class ADCadActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Set the ImageView as the content view for the Activity
         setContentView(R.layout.main);
+        int width=1024,height=768;
         // Create a new ImageView
         ImageView imageView =(ImageView)findViewById(R.id.imageView);  
         TextView t=(TextView)findViewById(R.id.tbView);
-	    t.setText("OK");
+        EditText tbpath=(EditText)findViewById(R.id.tbpath);
+        EditText tbname=(EditText)findViewById(R.id.tbname);
+        Button btdraw=(Button)findViewById(R.id.btBut);
+        imageView.setBackgroundColor(Color.WHITE);
+        btdraw.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				// TODO Auto-generated method stub
+				ImageView imageView =(ImageView)findViewById(R.id.imageView);  
+		        TextView t=(TextView)findViewById(R.id.tbView);
+		        EditText tbpath=(EditText)findViewById(R.id.tbpath);
+		        EditText tbname=(EditText)findViewById(R.id.tbname);
+				 DrawSvg(imageView, t, tbpath.getText().toString(), tbname.getText().toString());
+				  Log.d("myTag", "ok1");
+			}
+		});
+	 //   t.setText("OK");
 	    Log.d("myTag", "HHH");
         // Set the background color to white
-        imageView.setBackgroundColor(Color.WHITE);
-        int width=1024,height=768;
-        try
+     //   imageView.setBackgroundColor(Color.WHITE);
+        
+       
+    }
+	private void DrawSvg(ImageView imageView, TextView t, String path,
+			String name)
+    {
+	    try
         {
-	       InputStream is= download("http://192.168.1.109:8080/cad.svg", "baidu");
+	    	
+	       InputStream is= download(path+name+".svg", "baidu");
 	       //FileManage fileManage=new FileManage();
 	       
 	       // BitmapDrawable bitmapDrawable=new BitmapDrawable((is));
@@ -74,7 +101,7 @@ public class ADCadActivity extends Activity {
 	        SVGParase svgParase=new SVGParase(is);
 	       
 	        t.setText("12324");
-<<<<<<< HEAD
+
 	
 			//canvas.drawLine(lines.get(0).getX(0)/10, lines.get(0).getY(0)/10, lines.get(0).getX(1)/10, lines.get(0).getY(1)/10, paint);
 			ArrayList<Circle> circles=svgParase.getCircles();
@@ -87,23 +114,17 @@ public class ADCadActivity extends Activity {
 			for (Line line : lines)
             {
 	            line.draw(canvas, 1);
-=======
+            }
 	        t.setText(""+lines.get(0).getX(0)+","+lines.get(0).getY(0));
 			//canvas.drawLine(lines.get(0).getX(0)/10, lines.get(0).getY(0)/10, lines.get(0).getX(1)/10, lines.get(0).getY(1)/10, paint);
-			ArrayList<Circle> circles=svgParase.getCircles();
-			circles.get(0).draw(canvas,5);
-			for (Line line : lines)
-            {
-	            line.draw(canvas, 5);
->>>>>>> e36cca6eb5ff57b2ff39a0abd5cbd6477f56f6cb
-            }
 			//imageView.setImageDrawable(bitmapDrawable);
 	        imageView.setImageBitmap(bitmap);
-	        
+	        imageView.setVisibility(1);
         }
         catch (IOException e)
         {
 	        // TODO Auto-generated catch block
+        	Log.d("myTag","e1");
 	        e.printStackTrace();
         }
         /*	t.setText("1");
@@ -114,9 +135,9 @@ public class ADCadActivity extends Activity {
         catch (SAXException e)
         {
 	        // TODO Auto-generated catch block
+        	Log.d("myTag","e2");
 	        e.printStackTrace();
         }
-       
     }
     public InputStream download(String urlString, String filename) throws IOException 
     {   

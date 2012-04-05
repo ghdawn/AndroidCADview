@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, ADCadActivity!</string>
     <string name="app_name">ADCad</string>
+    <string name="viewpic">查看</string>
 
 </resources>
