@@ -54,11 +54,12 @@ public class Line implements IShape
 	{
 		// TODO Auto-generated method stub
 		Paint paint = new Paint();
+		
 		paint.setStyle(Style.STROKE);
-		paint.setColor(Color.BLACK);
-		for (int i = 0; i < _count-2; i+=2)
+		paint.setColor(Color.BLUE);
+		for (int i = 0; i < _count; i+=2)
         {
-	        canvas.drawLine(_points[i]/scale, _points[i+1]/scale, _points[i+2]/scale, _points[i+3]/scale, paint);
+	        canvas.drawLine(_points[i]/scale, _points[i+1]/scale, _points[(i+2)%_count]/scale, _points[(i+3)%_count]/scale, paint);
         }
 	}
 

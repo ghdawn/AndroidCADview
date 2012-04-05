@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 
 import me.ghdawn.form.Circle;
 import me.ghdawn.form.Line;
+import me.ghdawn.form.MyText;
 import me.ghdawn.util.FileManage;
 import me.ghdawn.util.SVGParase;
 
@@ -29,6 +30,7 @@ import android.graphics.Picture;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -52,6 +54,7 @@ public class ADCadActivity extends Activity {
 	    Log.d("myTag", "HHH");
         // Set the background color to white
         imageView.setBackgroundColor(Color.WHITE);
+        int width=1024,height=768;
         try
         {
 	       InputStream is= download("http://192.168.1.109:8080/cad.svg", "baidu");
@@ -60,27 +63,30 @@ public class ADCadActivity extends Activity {
 	       // BitmapDrawable bitmapDrawable=new BitmapDrawable((is));
 	        Bitmap bitmap;
 	        
-	        bitmap=Bitmap.createBitmap(300, 180, Config.ALPHA_8);
+	        bitmap=Bitmap.createBitmap(1024, 768, Config.ALPHA_8);
 	        Canvas canvas=new Canvas(bitmap);
 	        Paint paint=new Paint();
 	        paint.setColor(Color.BLACK);
 	       // t.setText("1");
 	        SVGParase svgParase=new SVGParase(is);
-	        ArrayList<Line> lines=svgParase.getLines();
+	       
 	        t.setText("12324");
-	        t.setText(""+lines.get(0).getX(0)+","+lines.get(0).getY(0));
+	
 			//canvas.drawLine(lines.get(0).getX(0)/10, lines.get(0).getY(0)/10, lines.get(0).getX(1)/10, lines.get(0).getY(1)/10, paint);
 			ArrayList<Circle> circles=svgParase.getCircles();
+			ArrayList<Line> lines=svgParase.getLines();
+			//ArrayList<MyText> texts=svgParase.getTexts();
 			for (Circle circle : circles)
             {
-	            circle.draw(canvas, 5);
+	            circle.draw(canvas, 1);
             }
 			for (Line line : lines)
             {
-	            line.draw(canvas, 5);
+	            line.draw(canvas, 1);
             }
 			//imageView.setImageDrawable(bitmapDrawable);
 	        imageView.setImageBitmap(bitmap);
+	        
         }
         catch (IOException e)
         {

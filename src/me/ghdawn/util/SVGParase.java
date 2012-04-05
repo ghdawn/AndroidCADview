@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import me.ghdawn.form.Circle;
 import me.ghdawn.form.Line;
+import me.ghdawn.form.MyText;
 import me.ghdawn.form.Polygon;
 
 import org.w3c.dom.Document;
@@ -71,7 +72,28 @@ public class SVGParase
 		}
 		return lines;
 	}
-	
+	public ArrayList<MyText> getTexts()
+	{
+		ArrayList<MyText> texts=new ArrayList<MyText>(100);
+		MyText text;
+		nList = doc.getElementsByTagName("circle");
+		for (int temp = 0; temp < nList.getLength(); temp++)
+		{
+
+			Node nNode = nList.item(temp);
+			
+			if (nNode.getNodeType() == Node.ELEMENT_NODE)
+			{
+
+				Element eElement = (Element) nNode;
+				String tempstr=eElement.getNodeValue();
+				text=new MyText(tempstr);
+				text.setPos(eElement.getAttribute("transform"));
+				texts.add(text);
+			}
+		}
+		return texts;
+	}
 	public ArrayList<Circle> getCircles()
 	{
 		ArrayList<Circle> circles=new ArrayList<Circle>(100);
