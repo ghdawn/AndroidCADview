@@ -15,7 +15,10 @@ import org.xml.sax.SAXException;
 
 import me.ghdawn.form.Circle;
 import me.ghdawn.form.Line;
+<<<<<<< HEAD
 import me.ghdawn.form.MyText;
+=======
+>>>>>>> e36cca6eb5ff57b2ff39a0abd5cbd6477f56f6cb
 import me.ghdawn.util.FileManage;
 import me.ghdawn.util.SVGParase;
 
@@ -71,6 +74,7 @@ public class ADCadActivity extends Activity {
 	        SVGParase svgParase=new SVGParase(is);
 	       
 	        t.setText("12324");
+<<<<<<< HEAD
 	
 			//canvas.drawLine(lines.get(0).getX(0)/10, lines.get(0).getY(0)/10, lines.get(0).getX(1)/10, lines.get(0).getY(1)/10, paint);
 			ArrayList<Circle> circles=svgParase.getCircles();
@@ -83,6 +87,15 @@ public class ADCadActivity extends Activity {
 			for (Line line : lines)
             {
 	            line.draw(canvas, 1);
+=======
+	        t.setText(""+lines.get(0).getX(0)+","+lines.get(0).getY(0));
+			//canvas.drawLine(lines.get(0).getX(0)/10, lines.get(0).getY(0)/10, lines.get(0).getX(1)/10, lines.get(0).getY(1)/10, paint);
+			ArrayList<Circle> circles=svgParase.getCircles();
+			circles.get(0).draw(canvas,5);
+			for (Line line : lines)
+            {
+	            line.draw(canvas, 5);
+>>>>>>> e36cca6eb5ff57b2ff39a0abd5cbd6477f56f6cb
             }
 			//imageView.setImageDrawable(bitmapDrawable);
 	        imageView.setImageBitmap(bitmap);
