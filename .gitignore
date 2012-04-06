@@ -1,7 +1,7 @@
 .project
 .classpath 
 proguard.cfg
-bin/
 project.properties
 gen/
+bin/
 

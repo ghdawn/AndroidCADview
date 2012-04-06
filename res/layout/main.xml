@@ -11,7 +11,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tbpath"
+        android:adjustViewBounds="false"
+        android:scaleType="matrix"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:visibility="visible" />
 
     <EditText
         android:id="@+id/tbpath"
@@ -35,16 +41,27 @@
         android:id="@+id/tbname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tbpath"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/tbpath"
         android:text="hellotest" />
 
     <Button
         android:id="@+id/btBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tbpath"
-        android:layout_centerHorizontal="true"
+        android:layout_alignBaseline="@+id/tbpath"
+        android:layout_alignBottom="@+id/tbpath"
+        android:layout_marginLeft="21dp"
+        android:layout_toRightOf="@+id/tbname"
         android:clickable="true"
         android:text="@string/viewpic" />
+
+    <Button
+        android:id="@+id/scale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btBut"
+        android:layout_toRightOf="@+id/btBut"
+        android:text="@string/scale" />
 
 </RelativeLayout>

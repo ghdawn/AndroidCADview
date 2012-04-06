@@ -18,6 +18,7 @@ public final class R {
         public static final int RelativeLayout1=0x7f060000;
         public static final int btBut=0x7f060005;
         public static final int imageView=0x7f060001;
+        public static final int scale=0x7f060006;
         public static final int tbView=0x7f060003;
         public static final int tbname=0x7f060004;
         public static final int tbpath=0x7f060002;
@@ -35,10 +36,12 @@ public final class R {
         public static final int images=0x7f040006;
         public static final int list=0x7f040007;
         public static final int mahuri=0x7f040008;
+        public static final int taoyan=0x7f040009;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
         public static final int hello=0x7f050000;
+        public static final int scale=0x7f050003;
         public static final int viewpic=0x7f050002;
     }
 }
