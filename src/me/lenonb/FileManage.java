@@ -1,6 +1,9 @@
 package me.lenonb;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 
 public class FileManage {
@@ -10,6 +13,9 @@ public class FileManage {
 	private String path ;
 	private String listPath ;
 	private int MAX_STRING = 100 ;
+
+	//private static final Done URLError = null;
+	//private static final Done done = null;
 	
 	public FileManage(IFileObtain obtain , String path) {
 		this.obtain = obtain ;
@@ -51,20 +57,19 @@ public class FileManage {
 		}
 	}
 	
-	public String getFile(String fileName , InputStream fin) {
-		
+	public Done getFile(String fileName , InputStream fin) {
 			try {
 				obtain.Open(this.path , str[0]) ;
 			} 
 			catch (MalformedURLException e) {
-				return "URLError";
+				return Done.URLError ;
 			} 
 			catch (IOException e) {
-				return "URLError" ;
+				return Done.URLError ;
 			}
 			
 			fin = obtain.getFile() ;
-			return "done" ;
+			return Done.done ;
 	}
 }
 
