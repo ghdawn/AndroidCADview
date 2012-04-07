@@ -1,9 +1,9 @@
 package me.lenonb;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 
 public class FileManage {
@@ -11,19 +11,15 @@ public class FileManage {
 	private String lName[] ;
 	private String str[] ;
 	private String path ;
-	private String listPath ;
 	private int MAX_STRING = 100 ;
 
-	//private static final Done URLError = null;
-	//private static final Done done = null;
-	
 	public FileManage(IFileObtain obtain , String path) {
 		this.obtain = obtain ;
 		this.path = path ;
-		this.listPath = path.concat("list");
 		
 		try {
-			BufferedReader list = new BufferedReader(new FileReader(listPath)) ;
+			obtain.Open(path , "list") ;
+			BufferedReader list = new BufferedReader(new InputStreamReader(obtain.getFile())) ;
 			String temp = " ";
 			int n = 0 ;
 			lName = new String[MAX_STRING] ;
@@ -40,7 +36,7 @@ public class FileManage {
 		}
 	}
 	
-	public void Search(String name) {
+	public String[] Search(String name) {
 		
 		int n = 0 , i = 0 ;
 		str = new String[MAX_STRING] ;
@@ -55,21 +51,23 @@ public class FileManage {
 				n++ ;
 			}
 		}
+		
+		return str ;
 	}
 	
-	public Done getFile(String fileName , InputStream fin) {
+	public status getFile(String fileName , InputStream fin) {
 			try {
-				obtain.Open(this.path , str[0]) ;
+				obtain.Open(this.path , Search(fileName)[0]) ;
 			} 
 			catch (MalformedURLException e) {
-				return Done.URLError ;
+				return status.URLError ;
 			} 
 			catch (IOException e) {
-				return Done.URLError ;
+				return status.URLError ;
 			}
 			
 			fin = obtain.getFile() ;
-			return Done.done ;
+			return status.done ;
 	}
 }
 
