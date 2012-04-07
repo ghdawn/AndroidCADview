@@ -5,47 +5,56 @@ import java.net.MalformedURLException;
 
 public class FileManage {
 	private IFileObtain obtain ;
-	private String name ;
+	private String lName[] ;
+	private String str[] ;
 	private String path ;
+	private String listPath ;
 	private int MAX_STRING = 100 ;
 	
 	public FileManage(IFileObtain obtain , String path) {
 		this.obtain = obtain ;
 		this.path = path ;
+		this.listPath = path.concat("list");
+		
+		try {
+			BufferedReader list = new BufferedReader(new FileReader(listPath)) ;
+			String temp = " ";
+			int n = 0 ;
+			lName = new String[MAX_STRING] ;
+		
+		
+			while(temp != null) {
+				temp = list.readLine() ;
+				lName[n] = temp ;
+				n++ ;
+			}
+		}
+		catch(IOException e) {
+			System.out.println("error !") ;
+		}
 	}
 	
-	public String[] Search(String name) {
-		this.name = name ;
-		int n = 0 ;
+	public void Search(String name) {
 		
-		InputStreamReader iStreamReader = new InputStreamReader(obtain.getFile()) ;
-		BufferedReader br = new BufferedReader(iStreamReader) ;
-		
-		String[] str ;
+		int n = 0 , i = 0 ;
 		str = new String[MAX_STRING] ;
+		
 		String temp = " " ;
 
-		try {
-			while(temp != null) 
-			{
-				temp = br.readLine() ;
-				if(temp.indexOf(name) != -1) {
-					str[n] = temp ;
-					n++ ;
-				}
+		while(temp != null) 
+		{
+			temp = lName[i] ;
+			if(temp.indexOf(name) != -1) {
+				str[n] = temp ;
+				n++ ;
 			}
-		} 
-		catch (IOException e) {
-			System.err.println("Error") ;
 		}
-		
-		return str ;
 	}
 	
 	public String getFile(String fileName , InputStream fin) {
 		
 			try {
-				obtain.Open(this.path , Search(name)[0]) ;
+				obtain.Open(this.path , str[0]) ;
 			} 
 			catch (MalformedURLException e) {
 				return "URLError";
@@ -57,6 +66,5 @@ public class FileManage {
 			fin = obtain.getFile() ;
 			return "done" ;
 	}
-	
 }
 
