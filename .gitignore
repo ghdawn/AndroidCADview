@@ -1,7 +1,3 @@
-.project
-.classpath 
-proguard.cfg
-project.properties
 gen/
 bin/
 bin/*/

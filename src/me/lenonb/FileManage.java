@@ -7,10 +7,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.*;
 
+
+import android.util.Log;
+
 public class FileManage
 {
 	private IFileObtain obtain;
-	private ArrayList<String> _fileName;
+	private ArrayList<String> _fileName = new ArrayList<String>(3);
 	private String path;
 
 	public FileManage(IFileObtain obtain, String path)
@@ -19,7 +22,11 @@ public class FileManage
 		this.path = path;
 		try
 		{
-			obtain.Open(this.path, "list");
+			if (!obtain.Open(this.path, "list"))
+			{
+				Log.e("myTag", "No file List");
+				return;
+			}
 			BufferedReader list = new BufferedReader(new InputStreamReader(
 			        obtain.getFile()));
 			String temp = " ";
@@ -34,11 +41,12 @@ public class FileManage
 			System.out.println("error !");
 		}
 	}
-	
+
 	public String[] getFileList()
 	{
 		return (String[]) _fileName.toArray();
 	}
+
 	public String[] Search(String name)
 	{
 		ArrayList<String> nameList = new ArrayList<String>(3);
@@ -49,25 +57,32 @@ public class FileManage
 				nameList.add(file);
 			}
 		}
-		
+
 		return (String[]) nameList.toArray();
 	}
 
-	public status getFile(String fileName, InputStream fin)
+	public InputStream getFile(String fileName) 
 	{
+
 		try
-		{
-			obtain.Open(this.path, Search(fileName)[0]);
-		}
-		catch (MalformedURLException e)
-		{
-			return status.URLError;
-		}
-		catch (IOException e)
-		{
-			return status.URLError;
-		}
-		fin = obtain.getFile();
-		return status.done;
+        {
+	        if (!obtain.Open(this.path, fileName + ".svg"))
+	        {
+	        	Log.e("mytag", "File not exist");
+	        }
+        }
+        catch (MalformedURLException e)
+        {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+        }
+
+		return obtain.getFile();
+
 	}
 }
