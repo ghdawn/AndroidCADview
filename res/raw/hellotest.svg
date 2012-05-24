@@ -12,6 +12,6 @@
 <polyline points="608.458,386.035 608.458,259.866 728.928,259.866 728.928,386.035 608.458,386.035 " />
 </g>
 <g stroke-width="0.18" clip-path="url(#clipId0)" fill="rgb(0,255,0)" stroke="none" >
-<text transform="matrix(3.45502 0 -0 5.17994 388.583 400.162)" font-family="宋体,'sans-serif'" letter-spacing="0.1" font-size="1.42915" >HELLO</text>
+<text transform="matrix(3.45502 0 -0 5.17994 388.583 400.162)" font-family="'sans-serif'" letter-spacing="0.1" font-size="1.42915" >HELLO</text>
 </g>
 </svg>

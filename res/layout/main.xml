@@ -1,67 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="bottom"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tbpath"
-        android:adjustViewBounds="false"
-        android:scaleType="matrix"
-        android:scrollbarStyle="insideInset"
-        android:scrollbars="vertical"
-        android:visibility="visible" />
-
     <EditText
-        android:id="@+id/tbpath"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextAddress"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:cursorVisible="true"
-        android:text="http://192.168.113.182:8080/" >
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="50dp"
+        android:inputType="textPersonName" >
 
         <requestFocus />
     </EditText>
 
-    <TextView
-        android:id="@+id/tbView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:text="@string/hello" />
-
     <EditText
-        android:id="@+id/tbname"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextPassword"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@+id/tbpath"
-        android:text="hellotest" />
+        android:layout_alignLeft="@+id/editTextAddress"
+        android:layout_below="@+id/editTextAddress"
+        android:layout_marginTop="26dp"
+        android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btBut"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonLogIn"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tbpath"
-        android:layout_alignBottom="@+id/tbpath"
-        android:layout_marginLeft="21dp"
-        android:layout_toRightOf="@+id/tbname"
-        android:clickable="true"
-        android:text="@string/viewpic" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="登陆" />
 
     <Button
-        android:id="@+id/scale"
+        android:id="@+id/buttonLogOut"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonLogIn"
+        android:layout_alignBottom="@+id/buttonLogIn"
+        android:layout_alignRight="@+id/editTextPassword"
+        android:text="注销" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btBut"
-        android:layout_toRightOf="@+id/btBut"
-        android:text="@string/scale" />
+        android:layout_alignBaseline="@+id/editTextAddress"
+        android:layout_alignBottom="@+id/editTextAddress"
+        android:layout_toLeftOf="@+id/editTextPassword"
+        android:text="服务器"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textViewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editTextPassword"
+        android:layout_alignBottom="@+id/editTextPassword"
+        android:layout_alignLeft="@+id/textViewAddress"
+        android:text="密码"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

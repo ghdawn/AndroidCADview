@@ -1,6 +1,6 @@
 package me.ghdawn.form;
 
-import com.sun.org.apache.regexp.internal.StringCharacterIterator;
+
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,19 +17,22 @@ public class MyText implements IShape
 	}
 	public void setPos(String pos)
     {
-	    pos.replace(')', ' ');
+	    pos=pos.replace(')', ' ');
 	    String[] posi=pos.split(" ");
 	    _x=Float.parseFloat(posi[posi.length-2]);
 	    _y=Float.parseFloat(posi[posi.length-1]);
     }
-	@Override
-	public void draw(Canvas canvas, float scale)
+	
+	public void draw(Canvas canvas)
 	{
 		// TODO Auto-generated method stub
 		Paint paint = new Paint();
+		paint.setTextSize(6f);
 		paint.setStyle(Style.STROKE);
 		paint.setColor(Color.BLACK);
 		canvas.drawText(_text, _x, _y, paint);
 	}
+	
+ 
 
 }

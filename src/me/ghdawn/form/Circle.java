@@ -17,13 +17,13 @@ public class Circle implements IShape
 	}
 
 	@Override
-	public void draw(Canvas canvas,float scale)
+	public void draw(Canvas canvas)
 	{
 		// TODO Auto-generated method stub
 		Paint paint = new Paint();
 		paint.setStyle(Style.STROKE);
 		paint.setColor(Color.BLACK);
-		canvas.drawCircle(_cx/scale, _cy/scale, _r/scale, paint);
+		canvas.drawCircle(_cx, _cy, _r, paint);
 		
 	}
 

@@ -50,7 +50,7 @@ public class Line implements IShape
 	}
 
 	@Override
-	public void draw(Canvas canvas,float scale)
+	public void draw(Canvas canvas )
 	{
 		// TODO Auto-generated method stub
 		Paint paint = new Paint();
@@ -59,7 +59,7 @@ public class Line implements IShape
 		paint.setColor(Color.BLUE);
 		for (int i = 0; i < _count-2; i+=2)
         {
-	        canvas.drawLine(_points[i]/scale, _points[i+1]/scale, _points[(i+2)%_count]/scale, _points[(i+3)%_count]/scale, paint);
+	        canvas.drawLine(_points[i], _points[i+1], _points[(i+2)%_count], _points[(i+3)%_count], paint);
 
         }
 	}
